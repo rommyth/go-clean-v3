@@ -1,0 +1,96 @@
+todo-app/
+├── api/
+│   └── swagger.yaml
+│
+├── cmd/
+│   └── server/
+│       └── main.go
+│
+├── internal/
+│   ├── domain/                  # ← Like bxcodec's "model/" + "repository interfaces"
+│   │   ├── todo/
+│   │   │   ├── todo.go          # Entity
+│   │   │   └── todo_repository.go  # Interface
+│   │   │
+│   │   ├── user/
+│   │   │   ├── user.go
+│   │   │   └── user_repository.go
+│   │   │
+│   │   └── auth/
+│   │       └── auth_service.go  # e.g., GenerateToken, ValidateToken interface
+│   │
+│   ├── usecase/                 # ← Same as bxcodec — pure business logic
+│   │   ├── todo/
+│   │   │   ├── todo_usecase.go
+│   │   │   └── todo_dto.go      # Request/Response structs
+│   │   │
+│   │   └── user/
+│   │       ├── user_usecase.go
+│   │       └── user_dto.go
+│   │
+│   ├── infrastructure/
+│   │   ├── persistence/         # ← Implements domain repository interfaces
+│   │   │   ├── gorm/
+│   │   │   │   ├── gorm.go
+│   │   │   │   ├── todo_repository.go    # Implements domain/todo/todo_repository.go
+│   │   │   │   ├── user_repository.go    # Implements domain/user/user_repository.go
+│   │   │   │   └── models/               # Optional: GORM-specific models
+│   │   │   │       ├── todo_model.go
+│   │   │   │       └── user_model.go
+│   │   │   │
+│   │   │   └── migrate/
+│   │   │       └── migrate.go
+│   │   │
+│   │   ├── delivery/            # ← Like bxcodec's "delivery/" — but with Echo
+│   │   │   └── http/
+│   │   │       ├── middleware/
+│   │   │       │   ├── jwt_auth.go
+│   │   │       │   ├── validator.go
+│   │   │       │   └── logging.go
+│   │   │       │
+│   │   │       ├── handler/
+│   │   │       │   ├── todo_handler.go   # Calls todo_usecase
+│   │   │       │   └── user_handler.go   # Calls user_usecase (register/login)
+│   │   │       │
+│   │   │       ├── router/
+│   │   │       │   └── router.go
+│   │   │       │
+│   │   │       └── server.go
+│   │   │
+│   │   └── external/
+│   │       └── jwt/
+│   │           └── jwt_service.go        # Implements domain/auth/auth_service.go
+│   │
+│   └── config/
+│       ├── config.go
+│       └── config.yaml
+│
+├── pkg/
+│   ├── logger/
+│   │   └── logger.go
+│   ├── validator/
+│   │   └── validator.go
+│   └── response/
+│       └── response.go
+│
+├── migrations/
+│   ├── 001_create_users_table.up.sql
+│   ├── 001_create_users_table.down.sql
+│   ├── 002_create_todos_table.up.sql
+│   └── 002_create_todos_table.down.sql
+│
+├── scripts/
+│   ├── setup-dev.sh
+│   └── db-migrate.sh
+│
+├── test/
+│   └── integration/
+│       ├── todo_integration_test.go
+│       └── user_integration_test.go
+│
+├── .env
+├── .gitignore
+├── go.mod
+├── go.sum
+├── README.md
+└── Makefile
