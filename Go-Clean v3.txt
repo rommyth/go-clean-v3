@@ -1,3 +1,39 @@
+You’ve completed 16 steps:
+
+Initialize Go Module
+Create Folder Structure
+Create domain/user/user.go
+Create domain/user/user_repository.go
+Create domain/auth/auth_service.go
+Create domain/errors/app_error.go
+Create usecase/user/user_dto.go
+Create usecase/user/user_usecase.go
+Create usecase/auth/auth_usecase.go
+Create infrastructure/persistence/gorm/gorm.go
+Create config/config.go (with godotenv + GetString)
+Create infrastructure/persistence/gorm/user_repository.go
+Create infrastructure/external/jwt/jwt_service.go
+Create infrastructure/persistence/gorm/models/user_model.go + update repo
+Create migrations/001_create_users_table.up.sql + .down.sql
+Create infrastructure/persistence/migrate/migrate.go
+
+➤ HTTP Layer (Echo)
+Create Echo Server (server.go)
+Create Router (router.go)
+Create Validator Middleware (validator.go)
+Create JWT Auth Middleware (jwt_auth.go)
+Create Logging Middleware (logging.go)
+Create User Handler (user_handler.go)
+Create Auth Handler (auth_handler.go)
+
+➤ Utilities & Final Wiring
+Create Response Helper (pkg/response/response.go)
+Create Logger (pkg/logger/logger.go)
+Create Validator Helper (pkg/validator/validator.go)
+Wire Everything in cmd/server/main.go
+Create Makefile for easy commands
+(Optional) Add Swagger, Docker, Tests
+
 todo-app/
 ├── api/
 │   └── swagger.yaml
